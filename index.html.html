@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Things I Want From You...</title>
+    <style>
+        :root {
+            --bg-color: #fff5f7;
+            --card-bg: #ffffff;
+            --primary-color: #ff8da1;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 141, 161, 0.2);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 141, 161, 0.4);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #ff768e;
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Special styling for the final slide layout */
+        #slide5 img {
+            max-height: 400px;
+            object-fit: contain;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .heart-deco {
+            color: var(--primary-color);
+            font-size: 24px;
+            margin-top: 15px;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            20% { transform: scale(1.1); }
+            40% { transform: scale(1.05); }
+            60% { transform: scale(1.15); }
+            80% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Slide 1: Introduction -->
+    <div class="slide active" id="slide1">
+        <img src="image.png" alt="3 things I want from you">
+        <div>
+            <button class="btn" onclick="nextSlide(2)">What are they? 🤔</button>
+        </div>
+    </div>
+
+    <!-- Slide 2: Hug -->
+    <div class="slide" id="slide2">
+        <img src="image_2.png" alt="1. a hug (from you)">
+        <div>
+            <button class="btn" onclick="nextSlide(3)">Next item... 👀</button>
+        </div>
+    </div>
+
+    <!-- Slide 3: Kiss -->
+    <div class="slide" id="slide3">
+        <img src="image_3.png" alt="2. a kiss (from you)">
+        <div>
+            <button class="btn" onclick="nextSlide(4)">And the third? Last one?</button>
+        </div>
+    </div>
+
+    <!-- Slide 4: Plot Twist -->
+    <div class="slide" id="slide4">
+        <img src="image_4.png" alt="hah you thought only 3?">
+        <div>
+            <button class="btn" onclick="nextSlide(5)">Wait, what?! 😳</button>
+        </div>
+    </div>
+
+    <!-- Slide 5: The grand 100 list finale -->
+    <div class="slide" id="slide5">
+        <img src="image_5.png" alt="100 things list">
+        <h3>I want everything from you. Always. Completely.</h3>
+        <div class="heart-deco">❤️</div>
+    </div>
+</div>
+
+<script>
+    function nextSlide(slideNumber) {
+        // Hide all slides
+        const slides = document.querySelectorAll('.slide');
+        slides.forEach(slide => slide.classList.remove('active'));
+        
+        // Show the target slide
+        const targetSlide = document.getElementById('slide' + slideNumber);
+        if (targetSlide) {
+            targetSlide.classList.add('active');
+        }
+    }
+</script>
+
+</body>
+</html>
