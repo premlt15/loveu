@@ -6,17 +6,17 @@
     <title>3 Things I Want From You...</title>
     <style>
         :root {
-            --bg-color: #fff5f7;
-            --card-bg: #ffffff;
+            --bg-color: #ffffff;
             --primary-color: #ff8da1;
-            --text-color: #333333;
+            --text-color: #000000;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,137 +25,169 @@
         }
 
         .container {
-            width: 90%;
-            max-width: 500px;
-            background: var(--card-bg);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255, 141, 161, 0.2);
-            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+            box-sizing: border-box;
             text-align: center;
-            position: relative;
-            transition: all 0.5s ease;
         }
 
         .slide {
             display: none;
-            animation: fadeIn 0.5s ease forwards;
+            animation: fadeIn 0.4s ease-out forwards;
         }
 
         .slide.active {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .slide img {
-            max-width: 100%;
+        .img-wrapper {
+            width: 100%;
+            height: 62vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: 140%; 
+            object-fit: cover;
+            object-position: center 45%; 
+        }
+
+        #slide5 .img-wrapper {
             height: auto;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            max-height: 75vh;
+            overflow-y: auto;
+            align-items: flex-start;
+        }
+        
+        #slide5 .img-wrapper img {
+            height: auto;
+            object-fit: contain;
+        }
+
+        .btn-container {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px 35px;
+            padding: 14px 40px;
             font-size: 16px;
-            font-weight: bold;
-            border-radius: 25px;
+            font-weight: 600;
+            border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 141, 161, 0.4);
-            transition: transform 0.2s, background-color 0.2s;
-        }
-
-        .btn:hover {
-            background-color: #ff768e;
-            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 141, 161, 0.3);
+            transition: transform 0.1s, background-color 0.2s;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .btn:active {
-            transform: translateY(0);
+            transform: scale(0.96);
+            background-color: #ff768e;
         }
 
-        /* Special styling for the final slide layout */
-        #slide5 img {
-            max-height: 400px;
-            object-fit: contain;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .heart-deco {
-            color: var(--primary-color);
-            font-size: 24px;
+        .final-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff5271;
             margin-top: 15px;
             animation: heartbeat 1.2s infinite;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes heartbeat {
-            0% { transform: scale(1); }
-            20% { transform: scale(1.1); }
-            40% { transform: scale(1.05); }
-            60% { transform: scale(1.15); }
-            80% { transform: scale(1); }
-            100% { transform: scale(1); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
     </style>
 </head>
 <body>
 
+<audio id="bg-music" src="music.mp3" loop></audio>
+
 <div class="container">
-    <!-- Slide 1: Introduction -->
     <div class="slide active" id="slide1">
-        <img src="image.png" alt="3 things I want from you">
-        <div>
-            <button class="btn" onclick="nextSlide(2)">What are they? 🤔</button>
+        <div class="img-wrapper">
+            <img src="image.png" alt="3 things I want from you">
+        </div>
+        <div class="btn-container">
+            <button class="btn" onclick="startExperience()">What are they? 🤔</button>
         </div>
     </div>
 
-    <!-- Slide 2: Hug -->
     <div class="slide" id="slide2">
-        <img src="image_2.png" alt="1. a hug (from you)">
-        <div>
-            <button class="btn" onclick="nextSlide(3)">Next item... 👀</button>
+        <div class="img-wrapper">
+            <img src="image_2.png" alt="1. a hug">
+        </div>
+        <div class="btn-container">
+            <button class="btn" onclick="nextSlide(3)">Next... 👀</button>
         </div>
     </div>
 
-    <!-- Slide 3: Kiss -->
     <div class="slide" id="slide3">
-        <img src="image_3.png" alt="2. a kiss (from you)">
-        <div>
-            <button class="btn" onclick="nextSlide(4)">And the third? Last one?</button>
+        <div class="img-wrapper">
+            <img src="image_3.png" alt="2. a kiss">
+        </div>
+        <div class="btn-container">
+            <button class="btn" onclick="nextSlide(4)">And the 3rd? Last one?</button>
         </div>
     </div>
 
-    <!-- Slide 4: Plot Twist -->
     <div class="slide" id="slide4">
-        <img src="image_4.png" alt="hah you thought only 3?">
-        <div>
+        <div class="img-wrapper">
+            <img src="image_4.png" alt="hah you thought only 3?">
+        </div>
+        <div class="btn-container">
             <button class="btn" onclick="nextSlide(5)">Wait, what?! 😳</button>
         </div>
     </div>
 
-    <!-- Slide 5: The grand 100 list finale -->
     <div class="slide" id="slide5">
-        <img src="image_5.png" alt="100 things list">
-        <h3>I want everything from you. Always. Completely.</h3>
-        <div class="heart-deco">❤️</div>
+        <div class="img-wrapper">
+            <img src="image_5.png" alt="The 100 list">
+        </div>
+        <div class="final-text">I want everything from you. Always. ❤️</div>
     </div>
 </div>
 
 <script>
+    // This function starts the music AND moves to slide 2
+    function startExperience() {
+        const music = document.getElementById('bg-music');
+        
+        // Play the audio (allowed because it's triggered by a button click)
+        music.play().catch(error => {
+            console.log("Audio playback failed:", error);
+        });
+        
+        nextSlide(2);
+    }
+
     function nextSlide(slideNumber) {
-        // Hide all slides
         const slides = document.querySelectorAll('.slide');
         slides.forEach(slide => slide.classList.remove('active'));
         
-        // Show the target slide
         const targetSlide = document.getElementById('slide' + slideNumber);
         if (targetSlide) {
             targetSlide.classList.add('active');
+            window.scrollTo(0, 0);
         }
     }
 </script>
